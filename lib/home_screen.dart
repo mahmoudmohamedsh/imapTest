@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:imaptest/MyDrawerBuilder.dart';
 import './details_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> categorys = ["All", "watch", "T-shirt", "Shose", "jenze"];
   int selected = 0;
 
   @override
@@ -28,7 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child:
+            MyDrawerBuilder(),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -74,7 +78,14 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.all(11),
             width: MediaQuery.of(context).size.width * 2 / 5 - 20,
             child: GestureDetector(
-              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (_)=>DetailsScreen(imageUrl: "assets/Products/product(${index}).png",)));},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => DetailsScreen(
+                              imageUrl: "assets/Products/product(${index}).png",
+                            )));
+              },
               child: GridTile(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(40),
@@ -90,6 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+ 
 }
 
 //======================================================================
